@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Task Planner{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-container">
+      <h1 class="logo">📝 Task Planner</h1>
+      {% if session.get("username") %}
+      <nav class="nav">
+        <span class="user">👤 {{ session.username }}</span>
+        <a href="/dashboard" class="nav-link">🏠 Dashboard</a>
+        <a href="/add" class="nav-link">➕ Add Task</a>
+        <a href="/logout" class="nav-link logout">🚪 Logout</a>
+      </nav>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="container main-content">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-messages">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Task Planner. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

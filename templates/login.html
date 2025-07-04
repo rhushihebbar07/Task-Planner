@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+  <h2 class="form-title">🔐 Login</h2>
+  <form method="POST" class="task-form">
+    <input type="text" name="username" placeholder="Username" required class="input" />
+    <input type="password" name="password" placeholder="Password" required class="input" />
+    <button type="submit" class="btn-submit">Login</button>
+  </form>
+  <p style="text-align:center; margin-top: 1rem;">
+    No account? <a href="/register">Register here</a>
+  </p>
+</div>
+{% endblock %}

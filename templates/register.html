@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="form-wrapper">
+  <h2 class="form-title">📝 Create Account</h2>
+  <form method="POST" class="task-form">
+    <input type="text" name="username" placeholder="Username" required class="input" />
+    <input type="password" name="password" placeholder="Password" required class="input" />
+    <button type="submit" class="btn-submit">Register</button>
+  </form>
+  <p style="text-align:center; margin-top: 1rem;">
+    Already have an account? <a href="/login">Login here</a>
+  </p>
+</div>
+{% endblock %}

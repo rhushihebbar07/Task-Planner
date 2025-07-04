@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+  <h2>Welcome, {{ session.username }} 👋</h2>
+  <div class="dashboard-links">
+    <a href="/add" class="btn-action animate">➕ Add Task</a>
+  </div>
+</div>
+
+<div class="task-list">
+  {% for task in tasks %}
+  <div class="task-card {{ task.priority|lower }} {% if task.status == 'Completed' %}completed{% endif %} animate">
+    <div class="task-header">
+      <h3>{{ task.title }}</h3>
+      <span class="badge">{{ task.status }}</span>
+    </div>
+    <p>{{ task.description }}</p>
+    <p><strong>Due:</strong> {{ task.due_date }}</p>
+    <div class="task-actions">
+      {% if task.status != 'Completed' %}
+        <a href="/complete/{{ task.id }}" title="Mark Complete" class="animate-icon">✅</a>
+      {% endif %}
+      <a href="/delete/{{ task.id }}" title="Delete" class="animate-icon">🗑️</a>
+    </div>
+  </div>
+  {% else %}
+    <p>No tasks yet. Add one above!</p>
+  {% endfor %}
+</div>
+{% endblock %}
